@@ -9,6 +9,7 @@
     "dev:watch": "ts-node-dev --respawn ./src/app.ts",
     "dev": "ts-node ./src/app.ts"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/evidence-codes/ScanForge.git"
