@@ -17,6 +17,18 @@ class Auth {
     }
   }
 
+  async generateSecret() {
+    let characters =
+      "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    let randomID = "";
+    for (let i = 0; i < 7; i++) {
+      randomID += characters.charAt(
+        Math.floor(Math.random() * characters.length)
+      );
+    }
+    return randomID;
+  }
+
   async register(data: IUser) {
     try {
       const { name, email, password } = data;
@@ -25,7 +37,8 @@ class Auth {
       const incoming: string = password.toString();
       const salt = await bcrypt.genSalt();
       const hash = await bcrypt.hash(incoming, salt);
-      const newUser = new User({ name, email, password: hash });
+      const secret = await this.generateSecret();
+      const newUser = new User({ name, email, password: hash, secret });
       await this.saveToDatabase(newUser);
       return newUser;
     } catch (err) {
