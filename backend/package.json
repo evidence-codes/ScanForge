@@ -7,7 +7,8 @@
     "compile": "tsc",
     "start": "ts-node ./src/app.ts",
     "dev:watch": "ts-node-dev --respawn ./src/app.ts",
-    "dev": "ts-node ./src/app.ts"
+    "dev": "ts-node ./src/app.ts",
+    "test": "jest"
   },
   "type": "module",
   "repository": {
@@ -40,9 +41,11 @@
     "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.11",
     "@types/jsonwebtoken": "^9.0.5",
     "@types/mongoose": "^5.11.97",
     "@types/node": "^20.10.6",
+    "@types/supertest": "^6.0.2",
     "typescript": "^5.3.3"
   }
 }
