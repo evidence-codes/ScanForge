@@ -12,7 +12,9 @@ async function connectDB() {
     }
 
     await mongoose.connect(DB_URI);
-    console.log("Connected to MongoDB!");
+
+    await mongoose.connection.dropDatabase();
+    console.log("Connected to MongoDB! Database dropped and reset.");
   } catch (error: any) {
     console.error("MongoDB connection error:", error);
   }
