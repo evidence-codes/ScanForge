@@ -4,11 +4,12 @@ import {
   forgotPassword,
   deleteUser,
 } from "../controllers/user.controller";
+import auth from "../middlewares/auth.middleware";
 
 const router = Router();
 
-router.get("/get-info", getUserInfo);
-router.patch("/change-password", forgotPassword);
-router.delete("/delete", deleteUser);
+router.get("/get-info", auth, getUserInfo);
+router.patch("/change-password", auth, forgotPassword);
+router.delete("/delete", auth, deleteUser);
 
 export default router;
