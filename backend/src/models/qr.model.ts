@@ -1,17 +1,22 @@
 import { Schema, model } from "mongoose";
 
 interface IQr {
+  userId: String;
   url: String;
-  qr: String;
+  image: String;
 }
 
 const qrSchema = new Schema<IQr>(
   {
+    userId: {
+      type: String,
+      required: true,
+    },
     url: {
       type: String,
       required: true,
     },
-    qr: {
+    image: {
       type: String,
       required: true,
     },
