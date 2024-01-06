@@ -16,3 +16,23 @@ export async function generator(req: AuthenticatedRequest, res: Response) {
     res.status(500).json({ error: err.message });
   }
 }
+
+export async function getCodes(req: AuthenticatedRequest, res: Response) {
+  try {
+    const codes = await QR.history(req.user?.id);
+    res.status(200).json({ codes });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+}
+
+export async function deleteCode(req: AuthenticatedRequest, res: Response) {
+  try {
+    const deletedCode = await QR.delete(req.body);
+    res
+      .status(200)
+      .json({ message: "QR deleted successfully...", deletedCode });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+}
