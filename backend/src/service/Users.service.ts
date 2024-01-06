@@ -14,6 +14,9 @@ class UserService {
   forgot(data: any) {
     return this.user.forgotPassword(data);
   }
+  password(data: any) {
+    return this.user.changePassword(data);
+  }
 
   delete(data: any) {
     return this.user.deleteUser(data);
