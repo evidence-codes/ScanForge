@@ -10,6 +10,14 @@ class QRService {
   generate(data: any) {
     return this.qr.generate(data);
   }
+
+  history(data: any) {
+    return this.qr.history(data);
+  }
+
+  delete(data: any) {
+    return this.qr.delete(data);
+  }
 }
 
 export default new QRService();

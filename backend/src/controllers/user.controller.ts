@@ -10,6 +10,7 @@ interface AuthenticatedRequest extends Request {
 export async function getUserInfo(req: AuthenticatedRequest, res: Response) {
   try {
     const user = await User.get(req.user?.id);
+    res.status(200).json({ data: user });
   } catch (err: any) {
     res.status(500).json({ error: err?.message });
   }
@@ -18,6 +19,16 @@ export async function getUserInfo(req: AuthenticatedRequest, res: Response) {
 export async function forgotPassword(req: Request, res: Response) {
   try {
     const response = await User.forgot(req.body);
+    res.status(200).json({ message: response });
+  } catch (err: any) {
+    res.status(500).json({ error: err?.message });
+  }
+}
+
+export async function changePassword(req: AuthenticatedRequest, res: Response) {
+  try {
+    const id = req.user?.id;
+    const response = await User.password({ ...req.body, id });
     res.status(200).json({ message: response });
   } catch (err: any) {
     res.status(500).json({ error: err?.message });
