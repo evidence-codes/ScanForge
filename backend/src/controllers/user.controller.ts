@@ -10,6 +10,7 @@ interface AuthenticatedRequest extends Request {
 export async function getUserInfo(req: AuthenticatedRequest, res: Response) {
   try {
     const user = await User.get(req.user?.id);
+    res.status(200).json({ data: user });
   } catch (err: any) {
     res.status(500).json({ error: err?.message });
   }
