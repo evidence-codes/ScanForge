@@ -13,13 +13,10 @@ const secret = process.env.JWT_SEC || " ";
 
 const auth = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   const authHeader = req.headers["authorization"] || "";
-  console.log(authHeader);
-  const token = authHeader.split(" ")[1];
-  console.log(token);
 
+  const token = authHeader.split(" ")[1];
   if (authHeader) {
     jwt.verify(token, secret, (err, decoded) => {
-      console.log(token);
       if (err) {
         throw new Error("Token is not valid!");
       } else {
