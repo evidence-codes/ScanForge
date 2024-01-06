@@ -4,7 +4,7 @@ import qr from "qr-image";
 class QR_gen {
   async generate(data: IQr) {
     try {
-      const { userId, url, image } = data;
+      const { userId, url } = data;
       const qr_svg = qr.image(url.toString(), { type: "png", size: 30 });
       const chunks: any = [];
 
