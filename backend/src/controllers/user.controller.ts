@@ -25,6 +25,16 @@ export async function forgotPassword(req: Request, res: Response) {
   }
 }
 
+export async function changePassword(req: AuthenticatedRequest, res: Response) {
+  try {
+    const id = req.user?.id;
+    const response = await User.password({ ...req.body, id });
+    res.status(200).json({ message: response });
+  } catch (err: any) {
+    res.status(500).json({ error: err?.message });
+  }
+}
+
 export async function deleteUser(req: AuthenticatedRequest, res: Response) {
   try {
     const response = await User.delete(req.user?.id);
