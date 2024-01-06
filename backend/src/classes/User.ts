@@ -38,12 +38,14 @@ class Users {
       if (!user) {
         throw new Error("User not found");
       }
-      if (user?.password != old)
-        throw new Error("Old password is not correct..");
+      const oldPassword: string = user["password"].toString();
+      const compare = await bcrypt.compare(old, oldPassword);
 
-      const incomingPassword: string = password.toString();
+      if (!compare) throw new Error("Old password is not correct..");
+
+      const newPassword: string = password.toString();
       const salt = await bcrypt.genSalt();
-      const hash = await bcrypt.hash(incomingPassword, salt);
+      const hash = await bcrypt.hash(newPassword, salt);
 
       user.password = hash;
       await user.save();
