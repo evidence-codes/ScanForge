@@ -14,12 +14,33 @@ class Users {
 
   async forgotPassword(data: IUser) {
     try {
-      const { email, secret } = data;
+      const { email, secret, password } = data;
       const user = await User.findOne({ email });
       if (!user) throw new Error("User does not exist");
       if (user.secret != secret) throw new Error("Wrong/Invalid Secret");
 
-      const { password } = user;
+      const incomingPassword: string = password.toString();
+      const salt = await bcrypt.genSalt();
+      const hash = await bcrypt.hash(incomingPassword, salt);
+
+      user.password = hash;
+      await user.save();
+      return "Password changed successfully...";
+    } catch (err: any) {
+      throw new Error(err?.message || "An Error Occured");
+    }
+  }
+
+  async changePassword(data: any) {
+    try {
+      const { old, password, id } = data;
+      const user = await User.findById(id);
+      if (!user) {
+        throw new Error("User not found");
+      }
+      if (user?.password != old)
+        throw new Error("Old password is not correct..");
+
       const incomingPassword: string = password.toString();
       const salt = await bcrypt.genSalt();
       const hash = await bcrypt.hash(incomingPassword, salt);
