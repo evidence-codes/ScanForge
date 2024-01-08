@@ -19,4 +19,7 @@
       rgb(247, 112, 98)
     );
   }
+  .input-width {
+    width: 40rem;
+  }
 }
