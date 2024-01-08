@@ -13,10 +13,10 @@ function Qrcode() {
       <main>
         <div className="main-gradient flex flex-col items-center pt-16 pb-20">
           <div>
-            <h1 className="text-white font-bold sm:text-7xl">
+            <h1 className="text-white font-bold text-7xl">
               ScanForge QR Generation
             </h1>
-            <h2 className="text-center text-white sm:text-4xl font-semibold">
+            <h2 className="text-center text-white text-4xl font-semibold">
               Instantly encode your data into codes
             </h2>
           </div>
