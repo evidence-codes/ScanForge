@@ -11,12 +11,12 @@ function Qrcode() {
   return (
     <>
       <main>
-        <div className="main-gradient flex flex-col items-center pt-16 pb-20">
+        <div className="main-gradient flex flex-col items-center pl-4 pr-4 pt-16 pb-20 sm:p-10">
           <div>
-            <h1 className="text-white font-bold text-7xl">
+            <h1 className="text-white font-bold sm:text-7xl text-4xl text-center">
               ScanForge QR Generation
             </h1>
-            <h2 className="text-center text-white text-4xl font-semibold">
+            <h2 className="text-center text-white sm:text-4xl text-xl pt-2 pl-8 pr-8 font-semibold">
               Instantly encode your data into codes
             </h2>
           </div>
@@ -25,7 +25,7 @@ function Qrcode() {
             <input
               type="text"
               placeholder="https://"
-              className="p-4 input-width rounded-xl  ... outline-transparent"
+              className="p-4 sm:input-width w-80 rounded-xl  ... outline-transparent"
             />
             <ul className="flex space-x-2 text-white font-semibold text-sm">
               <li
@@ -54,7 +54,7 @@ function Qrcode() {
               </li>
             </ul>
           </div>
-          <div className="pb-8">
+          <div className="pb-4">
             <img src={QR} alt="" className="opacity-70 bg-white" />
           </div>
 
