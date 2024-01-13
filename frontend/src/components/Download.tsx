@@ -12,7 +12,7 @@ function Download() {
         <h1>Downloads</h1>
       </div>
       <div className="flex sm:flex-row flex-col space-x-7 items-center justify-center p-10">
-        <div className="px-36 pb-4">
+        <div className="sm:px-36 pb-4">
           <div>
             <BiLogoPlayStore size={150} color="#fff" />
           </div>
@@ -26,7 +26,7 @@ function Download() {
             </Button>
           </div>
         </div>
-        <div className="px-36 pb-4">
+        <div className="sm:px-36 pb-4">
           <div>
             <FaWindows size={150} color="#fff" />
           </div>
@@ -40,7 +40,7 @@ function Download() {
             </Button>
           </div>
         </div>
-        <div className="px-36 pb-4">
+        <div className="sm:px-36 pb-4">
           <div>
             <FaLinux size={150} color="#fff" />
           </div>
