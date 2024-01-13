@@ -10,7 +10,7 @@ function Qrcode() {
   };
   return (
     <>
-      <main>
+      <main className="shadow-2xl shadow-red-400">
         <div className="main-gradient flex flex-col items-center pl-4 pr-4 pt-16 pb-20 sm:p-10">
           <div>
             <h1 className="text-white font-bold sm:text-7xl text-4xl text-center">
