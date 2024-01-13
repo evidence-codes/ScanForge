@@ -7,7 +7,7 @@ function Steps() {
     <>
       <section className="p-6 sm:p-10 px-6 max-w-5xl m-auto ">
         <div className="text-center flex flex-col items-center">
-          <p className="bg-red-400 rounded-full w-32 p-2 text-white font-semibold">
+          <p className="bg-red-500 rounded-full w-32 p-2 text-white font-semibold">
             How to Use
           </p>
         </div>
