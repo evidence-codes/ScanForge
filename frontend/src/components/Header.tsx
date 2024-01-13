@@ -10,7 +10,7 @@ function Header() {
         </div>
         <ul className="sm:flex sm:items-center">
           <Button
-            style="w-32 text-white bg-red-400 hover:bg-orange-600 p-4 font-semibold rounded-lg"
+            style="w-32 text-white bg-red-500 hover:bg-orange-600 p-4 font-semibold rounded-lg"
             type="button"
             onClick={() => console.log()}
             text="Get Started"

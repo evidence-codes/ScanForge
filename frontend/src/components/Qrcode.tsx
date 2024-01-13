@@ -59,7 +59,7 @@ function Qrcode() {
           </div>
 
           <Button
-            style="w-32 text-white bg-red-700 hover:bg-orange-600 p-4 font-semibold rounded-lg"
+            style="w-32 text-white bg-red-500 hover:bg-orange-600 p-4 font-semibold rounded-lg"
             type="button"
             onClick={() => console.log()}
             text="Generate"

@@ -1,4 +1,5 @@
 import "./App.css";
+import Download from "./components/Download";
 // import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Qrcode from "./components/Qrcode";
@@ -10,6 +11,7 @@ function App() {
       <Header />
       <Qrcode />
       <Step />
+      <Download />
       {/* <Footer /> */}
     </>
   );

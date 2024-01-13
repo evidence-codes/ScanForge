@@ -5,12 +5,19 @@ interface ButtonProps {
   style: string;
   type?: "submit" | "reset" | "button";
   onClick: React.MouseEventHandler<HTMLButtonElement>;
-  text: string;
+  text?: string;
+  children?: React.ReactNode;
 }
 
-const Button: React.FC<ButtonProps> = ({ style, type, onClick, text }) => (
+const Button: React.FC<ButtonProps> = ({
+  style,
+  type,
+  onClick,
+  text,
+  children,
+}) => (
   <button className={style} type={type} onClick={onClick}>
-    {text}
+    {children || text}
   </button>
 );
 
@@ -19,6 +26,7 @@ Button.propTypes = {
   type: PropTypes.oneOf(["submit", "reset", "button"]),
   onClick: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
+  children: PropTypes.node,
 };
 
 export default Button;
