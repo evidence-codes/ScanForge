@@ -1,20 +1,17 @@
 import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
-// import Download from "./components/Download";
-// import Footer from "./components/Footer";
-// import Header from "./components/Header";
-// import Qrcode from "./components/Qrcode";
-// import Step from "./components/Steps";
+import Home from "./pages/Home";
 
 function App() {
   return (
     <>
-      {/* <Header />
-      <Qrcode />
-      <Step />
-      <Download />
-      <Footer /> */}
-      <Login />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/auth" element={<Login />} />
+        </Routes>
+      </Router>
     </>
   );
 }
