@@ -28,7 +28,7 @@ function LoginForm() {
           </div>
           <div className="px-4">
             <Button
-              style="w-32 text-white bg-pink-600 hover:bg-orange-600 p-4 font-semibold rounded-lg"
+              style="w-32 text-white bg-pink-600 hover:opacity-90 p-4 font-semibold rounded-lg outline-none"
               type="button"
               onClick={() => console.log()}
               text="Login"
@@ -77,7 +77,7 @@ function SignupForm() {
           </div>
           <div className="px-4">
             <Button
-              style="w-32 text-white bg-pink-600 hover:bg-orange-600 p-4 font-semibold rounded-lg"
+              style="w-32 text-white bg-pink-600 hover:opacity-90 p-4 font-semibold rounded-lg outline-none"
               type="button"
               onClick={() => console.log()}
               text="Sign up"
@@ -98,9 +98,9 @@ const Form = () => {
 
   return (
     <div>
-      <div className="flex">
+      <div className="flex px-8">
         <span
-          className={`px-4 py-2 text-gray-700 font-medium text-sm ${
+          className={`px-4 py-2 text-gray-700 font-medium text-base cursor-pointer ${
             activeTab === "login"
               ? "underline underline-offset-8 decoration-4 decoration-pink-600"
               : ""
@@ -110,7 +110,7 @@ const Form = () => {
           Login
         </span>
         <span
-          className={`px-4 py-2 text-gray-700 font-medium text-sm ${
+          className={`px-4 py-2 text-gray-700 font-medium text-base cursor-pointer ${
             activeTab === "signup"
               ? "underline underline-offset-8 decoration-4 decoration-pink-600"
               : ""
@@ -121,7 +121,9 @@ const Form = () => {
         </span>
       </div>
 
-      {activeTab === "login" ? <LoginForm /> : <SignupForm />}
+      <div className="p-8">
+        {activeTab === "login" ? <LoginForm /> : <SignupForm />}
+      </div>
     </div>
   );
 };
