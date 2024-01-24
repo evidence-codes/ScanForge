@@ -22,4 +22,18 @@
   .input-width {
     width: 40rem;
   }
+  .grad-pic {
+    background-image: linear-gradient(
+        270deg,
+        rgba(176, 42, 42, 0.16) 0%,
+        rgba(176, 42, 42, 0.56) 18.45%,
+        rgba(176, 42, 42, 0.8) 49.67%,
+        rgba(176, 42, 42, 0.56) 82.52%,
+        rgba(176, 42, 42, 0.196364) 99.7%,
+        rgba(189, 40, 40, 0) 99.71%,
+        rgba(203, 56, 55, 0) 99.72%,
+        rgba(203, 56, 55, 0.16) 99.73%
+      ),
+      url(https://static-production.npmjs.com/abf53a31b2da4657a1a004ee9358551c.png);
+  }
 }
