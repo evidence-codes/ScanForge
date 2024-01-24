@@ -1,6 +1,11 @@
 import { useState } from "react";
 import Button from "./Button";
 
+interface TabButtonsProps {
+  activeTab: "login" | "signup";
+  handleTabClick: (tab: "login" | "signup") => void;
+}
+
 function LoginForm() {
   return (
     <>
@@ -89,6 +94,34 @@ function SignupForm() {
   );
 }
 
+const TabButtons: React.FC<TabButtonsProps> = ({
+  activeTab,
+  handleTabClick,
+}) => (
+  <div className="flex px-8">
+    <span
+      className={`px-4 py-2 text-gray-700 font-medium text-base cursor-pointer ${
+        activeTab === "login"
+          ? "underline underline-offset-8 decoration-4 decoration-pink-600"
+          : ""
+      }`}
+      onClick={() => handleTabClick("login")}
+    >
+      Login
+    </span>
+    <span
+      className={`px-4 py-2 text-gray-700 font-medium text-base cursor-pointer ${
+        activeTab === "signup"
+          ? "underline underline-offset-8 decoration-4 decoration-pink-600"
+          : ""
+      }`}
+      onClick={() => handleTabClick("signup")}
+    >
+      Sign Up
+    </span>
+  </div>
+);
+
 const Form = () => {
   const [activeTab, setActiveTab] = useState<"login" | "signup">("login");
 
@@ -98,29 +131,7 @@ const Form = () => {
 
   return (
     <div>
-      <div className="flex px-8">
-        <span
-          className={`px-4 py-2 text-gray-700 font-medium text-base cursor-pointer ${
-            activeTab === "login"
-              ? "underline underline-offset-8 decoration-4 decoration-pink-600"
-              : ""
-          }`}
-          onClick={() => handleTabClick("login")}
-        >
-          Login
-        </span>
-        <span
-          className={`px-4 py-2 text-gray-700 font-medium text-base cursor-pointer ${
-            activeTab === "signup"
-              ? "underline underline-offset-8 decoration-4 decoration-pink-600"
-              : ""
-          }`}
-          onClick={() => handleTabClick("signup")}
-        >
-          Sign Up
-        </span>
-      </div>
-
+      <TabButtons activeTab={activeTab} handleTabClick={handleTabClick} />
       <div className="p-8">
         {activeTab === "login" ? <LoginForm /> : <SignupForm />}
       </div>
