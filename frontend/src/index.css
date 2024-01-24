@@ -22,40 +22,18 @@
   .input-width {
     width: 40rem;
   }
-  .rotate-45 {
-    transform: rotate(-45deg);
-  }
-  .pill-1 {
-    bottom: 0;
-    left: -40px;
-    position: absolute;
-    width: 80px;
-    height: 200px;
-    border-radius: 40px;
-  }
-  .pill-2 {
-    top: -100px;
-    left: -80px;
-    position: absolute;
-    height: 450px;
-    width: 220px;
-    border-radius: 200px;
-    border: 30px solid #e2c5e2;
-  }
-  .pill-3 {
-    top: -100px;
-    left: 160px;
-    position: absolute;
-    height: 200px;
-    width: 100px;
-    border-radius: 70px;
-  }
-  .pill-4 {
-    bottom: -180px;
-    left: 220px;
-    position: absolute;
-    height: 300px;
-    width: 120px;
-    border-radius: 70px;
+  .grad-pic {
+    background-image: linear-gradient(
+        270deg,
+        rgba(176, 42, 42, 0.16) 0%,
+        rgba(176, 42, 42, 0.56) 18.45%,
+        rgba(176, 42, 42, 0.8) 49.67%,
+        rgba(176, 42, 42, 0.56) 82.52%,
+        rgba(176, 42, 42, 0.196364) 99.7%,
+        rgba(189, 40, 40, 0) 99.71%,
+        rgba(203, 56, 55, 0) 99.72%,
+        rgba(203, 56, 55, 0.16) 99.73%
+      ),
+      url(https://static-production.npmjs.com/abf53a31b2da4657a1a004ee9358551c.png);
   }
 }
