@@ -17,13 +17,16 @@ function Qrcode() {
 
   const handleGenerateClick = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/qr/generate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ url: inputValue }),
-      });
+      const response = await fetch(
+        "https://scanforge.onrender.com/api/qr/generate",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ url: inputValue }),
+        }
+      );
 
       if (response.ok) {
         const result = await response.json();
