@@ -15,6 +15,10 @@ app.use("/api/auth", AuthRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/qr/", qrRoutes);
 
+app.get("/", (req: Request, res: Response) => {
+  res.send("Express + TypeScript Server");
+});
+
 app.listen(port, () => {
   console.log(`Server listening on http://localhost:${port}`);
 });
