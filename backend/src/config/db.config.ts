@@ -5,7 +5,7 @@ dotenv.config();
 
 const DB_URI = process.env.MONGODB_URI || "";
 
-async function connectDB() {
+export default async function connectDB() {
   try {
     if (!DB_URI) {
       throw new Error("MONGODB_URI is not defined in the environment");
@@ -19,5 +19,3 @@ async function connectDB() {
     console.error("MongoDB connection error:", error);
   }
 }
-
-export { connectDB };
