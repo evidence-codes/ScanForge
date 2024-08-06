@@ -36,6 +36,15 @@ function Qrcode() {
       console.error("Error:", error);
     }
   };
+
+  const handleDownloadClick = () => {
+    const link = document.createElement("a");
+    link.href = `data:image/png;base64,${qrData}`;
+    link.download = "qrcode.png";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   return (
     <>
       <main className="shadow-2xl shadow-red-400">
@@ -103,8 +112,8 @@ function Qrcode() {
           <Button
             style="w-32 text-white bg-red-500 hover:bg-orange-600 p-4 font-semibold rounded-lg"
             type="button"
-            onClick={handleGenerateClick}
-            text="Generate"
+            onClick={qrData ? handleDownloadClick : handleGenerateClick}
+            text={qrData ? "Download" : "Generate"}
           />
         </div>
       </main>
