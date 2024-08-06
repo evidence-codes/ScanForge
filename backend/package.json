@@ -4,12 +4,10 @@
   "description": "Backend Server for ScanForge - QR Code generator",
   "main": "app.ts",
   "scripts": {
-    "build": "tsc",
-    "start": "node ./dist/app.js",
-    "dev": "NODE_OPTIONS='--experimental-specifier-resolution=node' nodemon ./src/app.ts",
+    "start": "tsc && node ./dist/app.js",
+    "dev": "nodemon src/app.ts",
     "test": "jest"
   },
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/evidence-codes/ScanForge.git"
@@ -43,6 +41,7 @@
     "@types/jsonwebtoken": "^9.0.6",
     "@types/mongoose": "^5.11.97",
     "@types/node": "^22.1.0",
+    "@types/qr-image": "^3.2.9",
     "@types/supertest": "^6.0.2",
     "nodemon": "^3.1.4",
     "ts-node": "^10.9.2",
