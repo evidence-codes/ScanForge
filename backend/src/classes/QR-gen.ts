@@ -8,10 +8,11 @@ class QR_gen {
       const qr_svg = qr.imageSync(url.toString(), { type: "png", size: 30 });
       const base64QR = qr_svg.toString("base64");
 
-      const qrCode = new QR({ userId, url, image: base64QR });
-      await qrCode.save();
+      // const qrCode = new QR({ userId, url, image: base64QR });
+      // await qrCode.save();
 
-      return qrCode;
+      // return qrCode;
+      return { image: base64QR };
     } catch (err) {
       throw new Error("Failed to generate QR code");
     }

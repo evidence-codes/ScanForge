@@ -4,7 +4,7 @@ import auth from "../middlewares/auth.middleware";
 
 const router = Router();
 
-router.post("/generate", auth, generator);
+router.post("/generate", generator);
 router.get("/get-codes", auth, getCodes);
 router.delete("/delete", auth, deleteCode);
 
