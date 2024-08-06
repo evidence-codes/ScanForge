@@ -3,10 +3,38 @@ import QR from "../assets/qr.svg";
 import Button from "./Button";
 
 function Qrcode() {
-  const [selectedFormat, setSelectedFormat] = useState("");
+  // const [selectedFormat, setSelectedFormat] = useState("");
 
-  const handleClick = (format: string) => {
-    setSelectedFormat(format);
+  // const handleClick = (format: string) => {
+  //   setSelectedFormat(format);
+  // };
+  const [inputValue, setInputValue] = useState<string>("");
+  const [qrData, setQrData] = useState<string | null>(null);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleGenerateClick = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/api/qr/generate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ url: inputValue }),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log("QR Code generated:", result);
+        setQrData(result.data.image);
+      } else {
+        console.error("Failed to generate QR code");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
   return (
     <>
@@ -26,8 +54,9 @@ function Qrcode() {
               type="text"
               placeholder="https://"
               className="p-4 sm:input-width w-80 rounded-xl  ... outline-transparent"
+              onChange={handleChange}
             />
-            <ul className="flex space-x-2 text-white font-semibold text-sm">
+            {/* <ul className="flex space-x-2 text-white font-semibold text-sm">
               <li
                 className={`cursor-pointer ${
                   selectedFormat === "PNG" ? "underline decoration-2" : ""
@@ -52,16 +81,29 @@ function Qrcode() {
               >
                 SVG
               </li>
-            </ul>
+            </ul> */}
           </div>
           <div className="pb-4">
-            <img src={QR} alt="" className="opacity-70 bg-white" />
+            {/* Conditionally render the generated QR code or the demo QR code */}
+            {qrData ? (
+              <img
+                src={`data:image/png;base64,${qrData}`}
+                alt="Generated QR Code"
+                style={{ width: "300px", height: "300px" }}
+              />
+            ) : (
+              <img
+                src={QR}
+                alt="Demo QR Code"
+                className="opacity-70 bg-white"
+              />
+            )}
           </div>
 
           <Button
             style="w-32 text-white bg-red-500 hover:bg-orange-600 p-4 font-semibold rounded-lg"
             type="button"
-            onClick={() => console.log()}
+            onClick={handleGenerateClick}
             text="Generate"
           />
         </div>
