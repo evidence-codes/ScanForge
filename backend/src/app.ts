@@ -17,6 +17,7 @@ app.use("/api/qr/", qrRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");
+  console.log("Server is pinged!!!");
 });
 
 app.listen(port, () => {
