@@ -9,6 +9,7 @@ const app: Express = express();
 const port = 5000;
 
 app.use(express.json());
+app.use(cors());
 
 app.use("/api/auth", AuthRoutes);
 app.use("/api/user", userRoutes);
