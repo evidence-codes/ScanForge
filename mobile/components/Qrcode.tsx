@@ -1,12 +1,85 @@
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import { useState } from "react";
-
+import { Platform, Alert } from "react-native";
 import FormField from "./FormField";
+import { images } from "@/constants";
+import CustomButton from "./CustomButton";
+
+import * as FileSystem from "expo-file-system";
+import * as MediaLibrary from "expo-media-library";
+import * as Sharing from "expo-sharing";
 
 const Qrcode = () => {
   const [form, setForm] = useState({
     text: "",
   });
+  const [inputValue, setInputValue] = useState<string>("");
+  const [qrData, setQrData] = useState<string | null>(null);
+
+  const handleChange = (text: string) => {
+    setInputValue(text);
+    setForm({ ...form, text });
+  };
+
+  const handleGenerateClick = async () => {
+    try {
+      const response = await fetch(
+        "https://scanforge.onrender.com/api/qr/generate",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ url: inputValue }),
+        }
+      );
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log("QR Code generated:", result);
+        setQrData(result.data.image);
+      } else {
+        console.error("Failed to generate QR code");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  const handleDownloadClick = async () => {
+    if (!qrData) {
+      Alert.alert("Error", "QR code data is not available.");
+      return;
+    }
+
+    const fileName = "qrcode.png";
+    const base64Data = qrData;
+    const fileUri = `${FileSystem.documentDirectory}${fileName}`;
+
+    try {
+      // Write the file to the device
+      await FileSystem.writeAsStringAsync(fileUri, base64Data, {
+        encoding: FileSystem.EncodingType.Base64,
+      });
+      console.log("Image saved to:", fileUri);
+
+      if (Platform.OS === "ios") {
+        // Share the file on iOS
+        await Sharing.shareAsync(fileUri);
+      } else {
+        // Save the file to the device's media library on Android
+        const permission = await MediaLibrary.requestPermissionsAsync();
+        if (permission.granted) {
+          await MediaLibrary.saveToLibraryAsync(fileUri);
+          console.log("Image saved to gallery:", fileUri);
+        } else {
+          console.log("Permission not granted");
+        }
+      }
+    } catch (error) {
+      console.error("Error downloading image:", error);
+    }
+  };
   return (
     <>
       <View>
@@ -20,49 +93,37 @@ const Qrcode = () => {
             </Text>
           </View>
           <View className="p-4">
-            {/* <Text className="text-white text-sm font-bold">
-              Enter Link or Text
-            </Text> */}
             <FormField
               title="Enter Link or Text"
               value={form.text}
               placeholder="https://"
-              handleChangeText={(e) => setForm({ ...form, text: e })}
+              handleChangeText={handleChange}
               otherStyles="p-4 sm:input-width w-80 rounded-xl  ... outline-transparent"
               keyboardType="string"
             />
-            {/* <input
-              type="text"
-              placeholder="https://"
-              className="p-4 sm:input-width w-80 rounded-xl  ... outline-transparent"
-              onChange={handleChange}
-            /> */}
-            {/* <ul className="flex space-x-2 text-white font-semibold text-sm">
-              <li
-                className={`cursor-pointer ${
-                  selectedFormat === "PNG" ? "underline decoration-2" : ""
-                }`}
-                onClick={() => handleClick("PNG")}
-              >
-                PNG
-              </li>
-              <li
-                className={`cursor-pointer ${
-                  selectedFormat === "JPG" ? "underline decoration-2" : ""
-                }`}
-                onClick={() => handleClick("JPG")}
-              >
-                JPG
-              </li>
-              <li
-                className={`cursor-pointer ${
-                  selectedFormat === "SVG" ? "underline decoration-2" : ""
-                }`}
-                onClick={() => handleClick("SVG")}
-              >
-                SVG
-              </li>
-            </ul> */}
+            <View className="pb-4 items-center">
+              {/* Conditionally render the generated QR code or the demo QR code */}
+              {qrData ? (
+                <Image
+                  source={{ uri: `data:image/png;base64,${qrData}` }}
+                  alt="Generated QR Code"
+                  className="w-[300px] h-[300px]"
+                  // style={{ width: "300px", height: "300px" }}
+                />
+              ) : (
+                <Image
+                  source={images.QR}
+                  alt="Demo QR Code"
+                  className="bg-white"
+                />
+              )}
+            </View>
+            <CustomButton
+              title={qrData ? "Download" : "Generate"}
+              handlePress={qrData ? handleDownloadClick : handleGenerateClick}
+              containerStyles=" bg-red-400 hover:bg-orange-600 text-white"
+              textStyles="font-semibold text-white"
+            />
           </View>
         </View>
       </View>

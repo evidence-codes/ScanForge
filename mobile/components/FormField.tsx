@@ -5,7 +5,7 @@ interface FormFieldProps {
   title: string;
   value: string;
   placeholder: string;
-  handleChangeText: (e: string) => void;
+  handleChangeText: (text: string) => void;
   otherStyles?: string;
   keyboardType: string | null;
 }
@@ -33,7 +33,6 @@ const FormField: React.FC<FormFieldProps> = ({
           placeholder={placeholder}
           placeholderTextColor="#7b7b8b"
           onChangeText={handleChangeText}
-          secureTextEntry={title === "Password" && !showPassword}
         />
       </View>
     </View>
