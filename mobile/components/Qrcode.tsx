@@ -1,6 +1,6 @@
 import { View, Text, Image } from "react-native";
 import { useState } from "react";
-import { Platform, Alert } from "react-native";
+import { Platform, Alert, ToastAndroid } from "react-native";
 import FormField from "./FormField";
 import { images } from "@/constants";
 import CustomButton from "./CustomButton";
@@ -8,6 +8,7 @@ import CustomButton from "./CustomButton";
 import * as FileSystem from "expo-file-system";
 import * as MediaLibrary from "expo-media-library";
 import * as Sharing from "expo-sharing";
+import * as Notifications from "expo-notifications";
 
 const Qrcode = () => {
   const [form, setForm] = useState({
@@ -46,6 +47,15 @@ const Qrcode = () => {
     }
   };
 
+  // Ensure notification permissions// Request notification permissions
+  async function requestNotificationPermissions() {
+    const { status } = await Notifications.getPermissionsAsync();
+    if (status !== "granted") {
+      console.log("Requesting notification permissions");
+      await Notifications.requestPermissionsAsync();
+      console.log("Notification permission status:", status);
+    }
+  }
   const handleDownloadClick = async () => {
     if (!qrData) {
       Alert.alert("Error", "QR code data is not available.");
@@ -68,16 +78,27 @@ const Qrcode = () => {
         await Sharing.shareAsync(fileUri);
       } else {
         // Save the file to the device's media library on Android
-        const permission = await MediaLibrary.requestPermissionsAsync();
-        if (permission.granted) {
+        const { status } = await MediaLibrary.requestPermissionsAsync();
+        if (status === "granted") {
           await MediaLibrary.saveToLibraryAsync(fileUri);
-          console.log("Image saved to gallery:", fileUri);
+          await requestNotificationPermissions(); // Ensure permissions are requested
+          await Notifications.scheduleNotificationAsync({
+            content: {
+              title: "Download Complete",
+              body: "Image has been saved to gallery.",
+            },
+            trigger: null,
+          });
         } else {
-          console.log("Permission not granted");
+          Alert.alert(
+            "Error",
+            "Permission not granted to access media library."
+          );
         }
       }
     } catch (error) {
       console.error("Error downloading image:", error);
+      Alert.alert("Error", "Failed to download image.");
     }
   };
   return (
