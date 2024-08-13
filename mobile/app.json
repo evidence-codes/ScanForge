@@ -1,0 +1,46 @@
+{
+  "expo": {
+    "name": "ScanForge",
+    "slug": "ScanForge",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/Icon.png",
+    "scheme": "ScanForge",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/images/SplashIcon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.evidence-codes.ScanForge"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/Icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.evidence_codes.ScanForge"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "715bfff7-d0c8-4378-8ff2-abeb9ca9ac72"
+      }
+    }
+  }
+}
