@@ -104,7 +104,7 @@ const Qrcode = () => {
   return (
     <>
       <View>
-        <View className="bg-red-300 flex flex-col items-center pl-4 pr-4 pt-16 pb-20 sm:p-10">
+        <View className="bg-red-400 flex flex-col items-center pl-4 pr-4 pt-16 pb-20 sm:p-10">
           <View>
             <Text className="text-white font-bold sm:text-7xl text-4xl text-center">
               ScanForge QR Generation
@@ -142,7 +142,7 @@ const Qrcode = () => {
             <CustomButton
               title={qrData ? "Download" : "Generate"}
               handlePress={qrData ? handleDownloadClick : handleGenerateClick}
-              containerStyles=" bg-red-400 hover:bg-orange-600 text-white"
+              containerStyles=" bg-red-500 hover:bg-orange-600 text-white"
               textStyles="font-semibold text-white"
             />
           </View>

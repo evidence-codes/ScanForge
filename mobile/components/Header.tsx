@@ -12,7 +12,7 @@ function Header() {
     <>
       {/* <View className="h-3 bg-red-500"></View> */}
       <View className="p-10 flex justify-between py-4 md:px-10 px-7">
-        <Text className="font-bold text-2xl cursor-pointer flex items-center pb-2 pt-10">
+        <Text className="font-pbold text-2xl cursor-pointer flex items-center pb-2 pt-2">
           ScanForge
         </Text>
         {/* <ul className="sm:flex sm:items-center">

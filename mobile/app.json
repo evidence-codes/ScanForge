@@ -4,20 +4,21 @@
     "slug": "ScanForge",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/Icon.png",
     "scheme": "ScanForge",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/images/SplashIcon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.evidence-codes.ScanForge"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/qr.png",
+        "foregroundImage": "./assets/images/Icon.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.evidence_codes.ScanForge"
