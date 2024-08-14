@@ -1,6 +1,7 @@
 import { useState } from "react";
 import QR from "../assets/qr.svg";
 import Button from "./Button";
+import { IoReload } from "react-icons/io5";
 
 function Qrcode() {
   // const [selectedFormat, setSelectedFormat] = useState("");
@@ -48,6 +49,11 @@ function Qrcode() {
     link.click();
     document.body.removeChild(link);
   };
+
+  const handleReloadClick = () => {
+    setInputValue("");
+    setQrData(null);
+  };
   return (
     <>
       <main className="shadow-2xl shadow-red-400">
@@ -64,6 +70,7 @@ function Qrcode() {
             <p className="text-white text-sm font-bold">Enter Link or Text</p>
             <input
               type="text"
+              value={inputValue}
               placeholder="https://"
               className="p-4 sm:input-width w-80 rounded-xl  ... outline-transparent"
               onChange={handleChange}
@@ -112,12 +119,30 @@ function Qrcode() {
             )}
           </div>
 
-          <Button
-            style="w-32 text-white bg-red-500 hover:bg-orange-600 p-4 font-semibold rounded-lg"
-            type="button"
-            onClick={qrData ? handleDownloadClick : handleGenerateClick}
-            text={qrData ? "Download" : "Generate"}
-          />
+          {qrData ? (
+            <div className="flex justify-center space-x-4 w-80">
+              <Button
+                style="w-32 text-white bg-red-500 hover:bg-orange-600 p-4 font-semibold rounded-lg"
+                type="button"
+                onClick={qrData ? handleDownloadClick : handleGenerateClick}
+                text={qrData ? "Download" : "Generate"}
+              />
+              <Button
+                style="w-24 flex justify-center items-center text-white bg-gray-500 hover:bg-gray-600 p-4 font-semibold rounded-lg"
+                type="button"
+                onClick={handleReloadClick}
+              >
+                <IoReload size={30} />
+              </Button>
+            </div>
+          ) : (
+            <Button
+              style="w-32 text-white bg-red-500 hover:bg-orange-600 p-4 font-semibold rounded-lg"
+              type="button"
+              onClick={handleGenerateClick}
+              text="Generate"
+            />
+          )}
         </div>
       </main>
     </>
