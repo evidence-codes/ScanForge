@@ -44,9 +44,9 @@ ScanForge is a platform built for generating QR codes quickly and efficiently. T
 ## Usage
 
 - Access the frontend application via the provided URL.
-- Log in or sign up for an account to generate and manage QR codes.
 - Generate QR codes by providing URLs, texts, or other data inputs.
-- Save and organize QR codes for future use.
+<!-- - Log in or sign up for an account to generate and manage QR codes. -->
+<!-- - Save and organize QR codes for future use. -->
 
 ## Contributing
 
