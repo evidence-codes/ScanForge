@@ -5,10 +5,10 @@ import {
   ViewStyle,
   TextStyle,
 } from "react-native";
-import React from "react";
+import React, { ReactNode } from "react";
 
 interface CustomButtonProps {
-  title: string;
+  title: string | ReactNode;
   handlePress: () => void;
   containerStyles?: string;
   textStyles?: string;
